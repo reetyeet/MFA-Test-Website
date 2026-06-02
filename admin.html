@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MFA Gallery Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;min-height:100vh}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#7DC95E;border-radius:3px}
+
+/* ── Password gate ── */
+#gate{position:fixed;inset:0;background:rgba(5,5,10,.97);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.gate-box{background:#0f1610;border:1px solid rgba(125,201,94,.3);border-radius:12px;padding:2.5rem;width:min(400px,92vw);box-shadow:0 0 60px rgba(125,201,94,.15)}
+.gate-logo{display:flex;align-items:center;gap:.7rem;margin-bottom:2rem}
+.gate-logo img{height:48px}
+.gate-logo div{font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:.95rem;line-height:1.2}
+.gate-logo span{font-size:.55rem;color:#8A9D8A;letter-spacing:.2em;text-transform:uppercase;display:block}
+#gate h2{font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:1.5rem;margin-bottom:.4rem}
+#gate p{color:#8A9D8A;font-size:.875rem;margin-bottom:1.75rem}
+#pw-input{width:100%;background:#111a11;border:1px solid rgba(200,212,220,.12);border-radius:4px;color:#fff;padding:.75rem 1rem;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .18s,box-shadow .18s;margin-bottom:.9rem}
+#pw-input:focus{border-color:rgba(125,201,94,.55);box-shadow:0 0 0 3px rgba(125,201,94,.1)}
+#pw-input::placeholder{color:rgba(200,212,220,.35)}
+#gate-err{color:#f87171;font-size:.8rem;margin-bottom:.9rem;display:none}
+.btn-blue{font-family:'Oswald',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#7DC95E,#3d6640);border:none;border-radius:4px;padding:.8rem 2rem;cursor:pointer;transition:transform .18s,box-shadow .18s;box-shadow:0 0 24px rgba(125,201,94,.28);width:100%}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(125,201,94,.45)}
+
+/* ── Main admin UI ── */
+#app{display:none;flex-direction:column;min-height:100vh}
+
+/* Header */
+.adm-header{background:#0f1610;border-bottom:1px solid rgba(200,212,220,.07);padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.adm-header-left{display:flex;align-items:center;gap:.8rem}
+.adm-header-left img{height:40px}
+.adm-title{font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:1rem}
+.adm-title span{font-size:.6rem;color:#CEE7E6;letter-spacing:.18em;text-transform:uppercase;display:block;font-family:'Oswald',sans-serif;font-weight:500}
+.adm-header-right{display:flex;gap:.6rem;align-items:center}
+.btn-sm{font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-radius:3px;padding:.4rem 1rem;cursor:pointer;transition:all .18s;border:none}
+.btn-view{color:#C8D4C8;background:transparent;border:1px solid rgba(200,212,220,.2)}
+.btn-view:hover{color:#fff;border-color:rgba(200,212,220,.5)}
+.btn-logout{color:#f87171;background:transparent;border:1px solid rgba(248,113,113,.2)}
+.btn-logout:hover{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.5)}
+
+/* Main layout */
+.adm-body{display:grid;grid-template-columns:1fr;gap:2rem;padding:2rem 1.5rem;max-width:1300px;margin:0 auto;width:100%}
+@media(min-width:900px){.adm-body{grid-template-columns:320px 1fr}}
+
+/* Add panel */
+.panel{background:#0f1610;border:1px solid rgba(200,212,220,.07);border-radius:10px;padding:1.75rem}
+.panel-title{font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(200,212,220,.07)}
+label.lbl{display:block;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8A9D8A;margin-bottom:.4rem}
+input.f,textarea.f{width:100%;background:#111a11;border:1px solid rgba(200,212,220,.1);border-radius:4px;color:#fff;padding:.65rem .9rem;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;transition:border-color .18s,box-shadow .18s;margin-bottom:1rem}
+input.f:focus,textarea.f:focus{border-color:rgba(125,201,94,.55);box-shadow:0 0 0 3px rgba(125,201,94,.1)}
+input.f::placeholder,textarea.f::placeholder{color:rgba(200,212,220,.3)}
+textarea.f{resize:none}
+.or-divider{text-align:center;color:#8A9D8A;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin:.25rem 0 1rem;position:relative}
+.or-divider::before,.or-divider::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:rgba(200,212,220,.1)}
+.or-divider::before{left:0}.or-divider::after{right:0}
+
+/* File drop zone */
+#drop-zone{border:2px dashed rgba(125,201,94,.35);border-radius:6px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .18s,background .18s;margin-bottom:.5rem}
+#drop-zone:hover,#drop-zone.drag-over{border-color:#7DC95E;background:rgba(125,201,94,.06)}
+#drop-zone p{font-size:.8rem;color:#8A9D8A;margin-bottom:.5rem}
+#drop-zone strong{color:#CEE7E6}
+#file-in{display:none}
+#preview-wrap{display:none;margin-bottom:1rem;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:16/10}
+#preview-wrap img{width:100%;height:100%;object-fit:cover}
+#preview-clear{position:absolute;top:.4rem;right:.4rem;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;line-height:1}
+.btn-add{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#7DC95E,#3d6640);border:none;border-radius:4px;padding:.72rem 1.5rem;cursor:pointer;width:100%;transition:transform .18s,box-shadow .18s;box-shadow:0 0 18px rgba(125,201,94,.2);margin-top:.25rem}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(125,201,94,.4)}
+
+/* Gallery grid */
+.gal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.gal-header h3{font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1rem}
+.count-badge{background:rgba(125,201,94,.15);border:1px solid rgba(125,201,94,.3);color:#CEE7E6;font-size:.7rem;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .6rem;border-radius:2px}
+#gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.gal-card{background:#111a11;border:1px solid rgba(200,212,220,.07);border-radius:8px;overflow:hidden;position:relative;transition:border-color .2s}
+.gal-card:hover{border-color:rgba(125,201,94,.3)}
+.gal-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.gal-card-body{padding:.7rem .8rem}
+.caption-inp{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(200,212,220,.1);color:#C8D4C8;font-size:.78rem;font-family:'Inter',sans-serif;padding:.25rem 0;outline:none;transition:border-color .18s}
+.caption-inp:focus{border-color:#7DC95E}
+.caption-inp::placeholder{color:rgba(200,212,220,.3)}
+.gal-card-actions{display:flex;gap:.4rem;margin-top:.55rem}
+.btn-icon{background:none;border:1px solid rgba(200,212,220,.12);border-radius:3px;color:#8A9D8A;cursor:pointer;padding:.3rem .5rem;font-size:.75rem;transition:all .18s;display:flex;align-items:center;gap:.3rem;font-family:'Inter',sans-serif}
+.btn-icon:hover{color:#fff;border-color:rgba(200,212,220,.4)}
+.btn-del{border-color:rgba(248,113,113,.2);color:#f87171}
+.btn-del:hover{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.5);color:#fca5a5}
+.empty-state{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:#8A9D8A;font-size:.875rem}
+
+/* Toast */
+#toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#0f1610;border:1px solid rgba(125,201,94,.4);border-radius:6px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-family:'Oswald',sans-serif;letter-spacing:.06em;z-index:9999;transform:translateY(120%);transition:transform .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+#toast.show{transform:translateY(0)}
+#toast.error{border-color:rgba(248,113,113,.4);color:#fca5a5}
+
+.mfa-logo{ mix-blend-mode:screen }
+
+/* Reset button */
+.btn-reset{font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#8A9D8A;background:transparent;border:1px solid rgba(200,212,220,.15);border-radius:3px;padding:.4rem .9rem;cursor:pointer;transition:all .18s}
+.btn-reset:hover{color:#f87171;border-color:rgba(248,113,113,.3)}
+</style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">
+      <img src="./LOGO.png" alt="MFA" class="mfa-logo"/>
+      <div>MFA EDMONTON<span>Gallery Admin</span></div>
+    </div>
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to manage your gallery.</p>
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPw()"/>
+    <div id="gate-err">Incorrect password. Please try again.</div>
+    <button class="btn-blue" onclick="checkPw()">Enter Admin Panel</button>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app">
+
+  <header class="adm-header">
+    <div class="adm-header-left">
+      <img src="./LOGO.png" alt="MFA" class="mfa-logo"/>
+      <div class="adm-title">Gallery Manager<span>MFA Edmonton</span></div>
+    </div>
+    <div class="adm-header-right">
+      <a href="index.html" target="_blank" class="btn-sm btn-view">View Site ↗</a>
+      <button onclick="logout()" class="btn-sm btn-logout">Log Out</button>
+    </div>
+  </header>
+
+  <div class="adm-body">
+
+    <!-- ── ADD PHOTO PANEL ── -->
+    <div class="panel">
+      <div class="panel-title">Add Photo</div>
+
+      <label class="lbl">Upload File</label>
+      <div id="drop-zone" onclick="document.getElementById('file-in').click()" ondragover="doDragOver(event)" ondragleave="doDragLeave(event)" ondrop="doDrop(event)">
+        <p><strong>Click to browse</strong> or drag &amp; drop</p>
+        <p>Select multiple photos at once — JPG, PNG, WEBP — max 8 MB each</p>
+      </div>
+      <input type="file" id="file-in" accept="image/*" multiple onchange="onFileSelect(event)"/>
+
+      <div id="preview-wrap">
+        <img id="preview-img" src="" alt="Preview"/>
+        <button id="preview-clear" onclick="clearPreview()" title="Remove">×</button>
+      </div>
+
+      <div class="or-divider">or use URL</div>
+
+      <label class="lbl">Image URL</label>
+      <input class="f" type="url" id="url-in" placeholder="https://example.com/photo.jpg" oninput="onUrlInput()"/>
+
+      <label class="lbl">Caption (optional)</label>
+      <input class="f" type="text" id="cap-in" placeholder="e.g. Interior Restoration — 2021 F-150"/>
+
+      <button class="btn-add" onclick="addPhoto()">+ Add to Gallery</button>
+
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(200,212,220,.07)">
+        <button class="btn-reset" onclick="resetGallery()">Reset to Defaults</button>
+        <span style="font-size:.72rem;color:#8A9D8A;margin-left:.6rem">Removes all custom photos</span>
+      </div>
+    </div>
+
+    <!-- ── GALLERY PANEL ── -->
+    <div class="panel">
+      <div class="gal-header">
+        <h3>Current Gallery</h3>
+        <span class="count-badge" id="count-badge">0 photos</span>
+      </div>
+      <div id="gal-grid"></div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const PASS = 'mfa2026';
+const STORE_KEY = 'mfa_gallery';
+const DEFAULTS = [
+  { id:'d1', src:'https://placehold.co/700x525/111118/1557FF?text=Before+%26+After', caption:'Full Detail Transformation' },
+  { id:'d2', src:'https://placehold.co/700x525/16161F/4D9AFF?text=Interior+Detail',  caption:'Interior Restoration' },
+  { id:'d3', src:'https://placehold.co/700x525/111118/1557FF?text=Ceramic+Coating',  caption:'Ceramic Coating' },
+  { id:'d4', src:'https://placehold.co/700x525/16161F/4D9AFF?text=Paint+Correction', caption:'Paint Correction' },
+  { id:'d5', src:'https://placehold.co/700x525/111118/1557FF?text=Engine+Bay',        caption:'Engine Bay Detail' },
+  { id:'d6', src:'https://placehold.co/700x525/16161F/4D9AFF?text=Exterior+Wash',    caption:'Exterior Restoration' },
+];
+
+let gallery = [];
+let pendingSrc = '';  // base64 from file upload
+
+// ── Auth ──
+function checkPw() {
+  const val = document.getElementById('pw-input').value;
+  const err = document.getElementById('gate-err');
+  if (val === PASS) {
+    sessionStorage.setItem('mfa_admin', '1');
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    loadGallery();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+    setTimeout(() => err.style.display = 'none', 3000);
+  }
+}
+function logout() {
+  sessionStorage.removeItem('mfa_admin');
+  location.reload();
+}
+
+// Auto-login if session active
+if (sessionStorage.getItem('mfa_admin') === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+}
+
+// ── Gallery data ──
+function loadGallery() {
+  try { gallery = JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch(e) { gallery = []; }
+  renderGallery();
+}
+function saveGallery() {
+  localStorage.setItem(STORE_KEY, JSON.stringify(gallery));
+  updateCount();
+}
+function updateCount() {
+  const b = document.getElementById('count-badge');
+  b.textContent = gallery.length + ' photo' + (gallery.length !== 1 ? 's' : '');
+}
+
+// ── File upload ──
+function onFileSelect(e) {
+  const files = Array.from(e.target.files);
+  if (!files.length) return;
+  if (files.length === 1) {
+    processFile(files[0]); // single: show preview first
+  } else {
+    processBatch(files);   // multi: add all directly
+  }
+}
+function processFile(file) {
+  if (file.size > 8 * 1024 * 1024) { toast('File too large (max 8 MB)', true); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    pendingSrc = ev.target.result;
+    document.getElementById('url-in').value = '';
+    showPreview(pendingSrc);
+  };
+  reader.readAsDataURL(file);
+}
+function processBatch(files) {
+  const oversized = files.filter(f => f.size > 8 * 1024 * 1024);
+  if (oversized.length) toast(`${oversized.length} file(s) skipped — over 8 MB`, true);
+  const valid = files.filter(f => f.size <= 8 * 1024 * 1024);
+  if (!valid.length) return;
+  let loaded = 0;
+  valid.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      gallery.push({ id: Date.now().toString() + Math.random(), src: ev.target.result, caption: '' });
+      loaded++;
+      if (loaded === valid.length) {
+        saveGallery();
+        renderGallery();
+        document.getElementById('file-in').value = '';
+        toast(`${loaded} photo${loaded !== 1 ? 's' : ''} added to gallery`);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function onUrlInput() {
+  const val = document.getElementById('url-in').value.trim();
+  if (val) {
+    pendingSrc = '';
+    showPreview(val);
+  } else {
+    clearPreview();
+  }
+}
+function showPreview(src) {
+  const w = document.getElementById('preview-wrap');
+  document.getElementById('preview-img').src = src;
+  w.style.display = 'block';
+}
+function clearPreview() {
+  pendingSrc = '';
+  document.getElementById('url-in').value = '';
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('preview-img').src = '';
+  document.getElementById('file-in').value = '';
+}
+
+// Drag & drop
+function doDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function doDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function doDrop(e) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+  if (!files.length) return;
+  if (files.length === 1) {
+    processFile(files[0]);
+  } else {
+    processBatch(files);
+  }
+}
+
+// ── Add photo ──
+function addPhoto() {
+  const urlVal = document.getElementById('url-in').value.trim();
+  const src = pendingSrc || urlVal;
+  if (!src) { toast('Please select a file or enter a URL', true); return; }
+  const caption = document.getElementById('cap-in').value.trim();
+  gallery.push({ id: Date.now().toString(), src, caption });
+  saveGallery();
+  renderGallery();
+  clearPreview();
+  document.getElementById('cap-in').value = '';
+  toast('Photo added to gallery');
+}
+
+// ── Render ──
+function renderGallery() {
+  const grid = document.getElementById('gal-grid');
+  updateCount();
+  if (!gallery.length) {
+    grid.innerHTML = '<div class="empty-state">No photos yet — add your first one on the left.</div>';
+    return;
+  }
+  grid.innerHTML = gallery.map((item, idx) => `
+    <div class="gal-card" data-id="${item.id}">
+      <img src="${item.src}" alt="${item.caption||''}" loading="lazy"
+           onerror="this.src='https://placehold.co/400x300/111118/4D9AFF?text=Error'"/>
+      <div class="gal-card-body">
+        <input class="caption-inp" type="text" value="${escHtml(item.caption||'')}" placeholder="Add caption..."
+               onchange="updateCaption('${item.id}',this.value)"/>
+        <div class="gal-card-actions">
+          ${idx > 0 ? `<button class="btn-icon" onclick="moveItem('${item.id}',-1)" title="Move up">↑</button>` : ''}
+          ${idx < gallery.length-1 ? `<button class="btn-icon" onclick="moveItem('${item.id}',1)" title="Move down">↓</button>` : ''}
+          <button class="btn-icon btn-del" onclick="deleteItem('${item.id}')" title="Delete">
+            <svg width="11" height="11" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function updateCaption(id, val) {
+  const item = gallery.find(i => i.id === id);
+  if (item) { item.caption = val; saveGallery(); }
+}
+function deleteItem(id) {
+  gallery = gallery.filter(i => i.id !== id);
+  saveGallery();
+  renderGallery();
+  toast('Photo removed');
+}
+function moveItem(id, dir) {
+  const idx = gallery.findIndex(i => i.id === id);
+  const swapIdx = idx + dir;
+  if (swapIdx < 0 || swapIdx >= gallery.length) return;
+  [gallery[idx], gallery[swapIdx]] = [gallery[swapIdx], gallery[idx]];
+  saveGallery();
+  renderGallery();
+}
+function resetGallery() {
+  if (!confirm('This will remove all custom photos and restore the default placeholders. Continue?')) return;
+  localStorage.removeItem(STORE_KEY);
+  gallery = [];
+  saveGallery();
+  renderGallery();
+  toast('Gallery reset to defaults');
+}
+
+// ── Toast ──
+let toastTimer;
+function toast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent = isError ? '⚠ ' + msg : '✓ ' + msg;
+  el.className = isError ? 'error show' : 'show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// Load gallery if already authed
+if (sessionStorage.getItem('mfa_admin') === '1') loadGallery();
+
+</script>
+</body>
+</html>
