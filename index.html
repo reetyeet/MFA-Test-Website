@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -11,65 +11,90 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+:root{
+  --bg:#f7f3ea;
+  --bg-alt:#efe8d8;
+  --surface:#fffdf7;
+  --ink:#16241b;
+  --body:#4b564e;
+  --muted:#69746b;
+  --brand:#3e8e3a;
+  --brand-deep:#2c6e32;
+  --brand-bright:#7dc95e;
+  --border:rgba(22,36,27,.10);
+  --border-strong:rgba(22,36,27,.17);
+  --sh-1:0 1px 2px rgba(20,55,28,.05),0 3px 10px rgba(20,55,28,.05);
+  --sh-2:0 2px 6px rgba(20,55,28,.06),0 14px 30px rgba(28,72,38,.10);
+  --sh-3:0 8px 20px rgba(20,55,28,.09),0 34px 60px rgba(28,72,38,.13);
+  --space:1.5rem;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height:1.7}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:#090e09}
-::-webkit-scrollbar-thumb{background:#7DC95E;border-radius:3px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-height:1.7}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-alt)}
+::-webkit-scrollbar-thumb{background:#c3d8bd;border-radius:6px;border:2px solid var(--bg-alt)}
+::-webkit-scrollbar-thumb:hover{background:var(--brand-bright)}
+::selection{background:rgba(125,201,94,.28)}
 
-.f-head{font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.03em}
+.f-head{font-family:'Montserrat',sans-serif;font-weight:900;color:var(--ink);line-height:1.05;letter-spacing:-0.03em}
 .f-oswald{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.04em}
-.tag{display:inline-block;font-family:'Oswald',sans-serif;font-weight:500;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#CEE7E6;background:rgba(125,201,94,.1);border:1px solid rgba(125,201,94,.25);padding:.22rem .8rem;border-radius:2px;margin-bottom:.9rem}
+.tag{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-deep);background:rgba(62,142,58,.09);border:1px solid rgba(62,142,58,.24);padding:.28rem .85rem;border-radius:100px;margin-bottom:1rem}
 
-.btn-blue{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#7DC95E,#3d6640);border:none;border-radius:4px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease;box-shadow:0 0 24px rgba(125,201,94,.28);position:relative;overflow:hidden}
-.btn-blue:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(125,201,94,.5)}
+.btn-blue{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#5fb44c,#2c6e32);border:none;border-radius:8px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease;box-shadow:0 6px 20px rgba(46,125,50,.26);position:relative;overflow:hidden}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(46,125,50,.36)}
 .btn-blue:active{transform:translateY(0)}
-.btn-blue:focus-visible{outline:2px solid #CEE7E6;outline-offset:3px}
+.btn-blue:focus-visible{outline:2px solid var(--brand-deep);outline-offset:3px}
 
-.btn-white{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#090e09;background:#fff;border:none;border-radius:4px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease;position:relative;overflow:hidden}
-.btn-white:hover{transform:translateY(-2px);background:#e8ecf0}
+.btn-white{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ink);border:none;border-radius:8px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease;position:relative;overflow:hidden}
+.btn-white:hover{transform:translateY(-2px);background:#22362a}
+.btn-white:focus-visible{outline:2px solid var(--brand-deep);outline-offset:3px}
 
-.btn-ghost{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:#C8D4C8;background:transparent;border:1px solid rgba(200,212,220,.3);border-radius:4px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:color .18s,border-color .18s,transform .18s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
-.btn-ghost:hover{color:#fff;border-color:rgba(200,212,220,.7);transform:translateY(-2px)}
+.btn-ghost{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-deep);background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;padding:.85rem 2rem;text-decoration:none;cursor:pointer;transition:color .18s,border-color .18s,background .18s,transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;position:relative;overflow:hidden;box-shadow:var(--sh-1)}
+.btn-ghost:hover{border-color:rgba(62,142,58,.55);background:rgba(62,142,58,.06);transform:translateY(-2px);box-shadow:var(--sh-2)}
+.btn-ghost:focus-visible{outline:2px solid var(--brand-deep);outline-offset:3px}
 
-.nav-link{position:relative;color:#C8D4C8;text-decoration:none;font-size:.875rem;font-weight:500;transition:color .18s}
-.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:#7DC95E;transition:width .22s cubic-bezier(.34,1.56,.64,1)}
-.nav-link:hover{color:#fff}
+.nav-link{position:relative;color:var(--body);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .18s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--brand);border-radius:2px;transition:width .22s cubic-bezier(.34,1.56,.64,1)}
+.nav-link:hover{color:var(--ink)}
 .nav-link:hover::after{width:100%}
+.nav-link:focus-visible{outline:2px solid var(--brand-deep);outline-offset:4px;border-radius:2px}
 
-.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(200,212,220,.1) 30%,rgba(125,201,94,.22) 50%,rgba(200,212,220,.1) 70%,transparent)}
+.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(22,36,27,.08) 30%,rgba(62,142,58,.30) 50%,rgba(22,36,27,.08) 70%,transparent)}
 
-.card{background:#0f1610;border:1px solid rgba(200,212,220,.07);border-radius:10px;transition:border-color .2s,box-shadow .2s}
-.card-featured{background:linear-gradient(160deg,#0f1610,#111a11);border:1px solid rgba(125,201,94,.4);border-radius:10px;box-shadow:0 0 48px rgba(125,201,94,.14);position:relative;overflow:hidden}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh-1);transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:rgba(62,142,58,.32);box-shadow:var(--sh-2)}
+.card-featured{background:var(--surface);border:1.5px solid rgba(62,142,58,.45);border-radius:14px;box-shadow:var(--sh-3);position:relative;overflow:hidden}
+.card-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7dc95e,#2c6e32)}
 
-.ic{width:52px;height:52px;border-radius:50%;background:rgba(125,201,94,.1);border:1px solid rgba(125,201,94,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.badge{display:flex;align-items:center;gap:.6rem;font-family:'Oswald',sans-serif;font-weight:500;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:#C8D4C8}
+.ic{width:52px;height:52px;border-radius:50%;background:rgba(62,142,58,.10);border:1px solid rgba(62,142,58,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.badge{display:flex;align-items:center;gap:.6rem;font-family:'Oswald',sans-serif;font-weight:500;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--body)}
 
-.tab-btn{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#8A9D8A;background:transparent;border:1px solid rgba(138,155,173,.15);border-radius:4px;padding:.55rem 1.3rem;cursor:pointer;transition:color .18s,border-color .18s,background .18s}
-.tab-btn.active,.tab-btn:hover{color:#fff;border-color:rgba(125,201,94,.5);background:rgba(125,201,94,.1)}
+.tab-btn{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.6rem 1.35rem;cursor:pointer;transition:color .18s,border-color .18s,background .18s,box-shadow .18s}
+.tab-btn.active,.tab-btn:hover{color:var(--ink);border-color:rgba(62,142,58,.45);background:rgba(62,142,58,.08)}
+.tab-btn:focus-visible{outline:2px solid var(--brand-deep);outline-offset:2px}
 .tab-panel{display:none!important}
 .tab-panel.active{display:grid!important}
 
-.field{background:#111a11;border:1px solid rgba(200,212,220,.12);border-radius:4px;color:#fff;padding:.72rem 1rem;width:100%;font-family:'Inter',sans-serif;font-size:.875rem;outline:none;transition:border-color .18s,box-shadow .18s}
-.field::placeholder{color:rgba(200,212,220,.35)}
-.field:focus{border-color:rgba(125,201,94,.55);box-shadow:0 0 0 3px rgba(125,201,94,.1)}
-.field-label{display:block;font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#8A9D8A;margin-bottom:.45rem}
+.field{background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;color:var(--ink);padding:.72rem 1rem;width:100%;font-family:'Inter',sans-serif;font-size:.875rem;outline:none;transition:border-color .18s,box-shadow .18s}
+.field::placeholder{color:var(--muted)}
+.field:focus{border-color:rgba(62,142,58,.55);box-shadow:0 0 0 3px rgba(62,142,58,.12)}
+.field-label{display:block;font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
 
 .fi{transition:opacity .65s ease,transform .65s cubic-bezier(.34,1.56,.64,1)}
 .fi.will-animate{opacity:0;transform:translateY(20px)}
 .fi.vis{opacity:1!important;transform:translateY(0)!important}
 
-
-#mob-menu{display:none;background:#0f1610;border-top:1px solid rgba(200,212,220,.07)}
+#mob-menu{display:none;background:var(--surface);border-top:1px solid var(--border)}
 #mob-menu.open{display:block}
-.ham-btn{background:none;border:none;cursor:pointer;color:#C8D4C8;padding:.3rem}
+.ham-btn{background:none;border:none;cursor:pointer;color:var(--ink);padding:.3rem}
+.ham-btn:focus-visible{outline:2px solid var(--brand-deep);outline-offset:2px;border-radius:4px}
 
-.stars{color:#F59E0B}
-.price-num{font-family:'Oswald',sans-serif;font-weight:700;color:#fff;letter-spacing:-0.01em}
-.chk{display:flex;align-items:flex-start;gap:.65rem;font-size:.83rem;color:#C8D4C8}
+.stars{color:#f0a500}
+.price-num{font-family:'Oswald',sans-serif;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
+.chk{display:flex;align-items:flex-start;gap:.65rem;font-size:.83rem;color:var(--body)}
 .chk svg{flex-shrink:0;margin-top:.2rem}
-.pill{background:#111a11;border:1px solid rgba(200,212,220,.1);border-radius:20px;padding:.4rem 1rem;font-size:.83rem;color:#C8D4C8}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:.45rem 1.1rem;font-size:.83rem;color:var(--body);box-shadow:var(--sh-1)}
 
 .rg-hero   { display:grid; grid-template-columns:1fr; gap:3rem; align-items:center }
 .rg-2      { display:grid; grid-template-columns:1fr; gap:1.5rem }
@@ -95,41 +120,37 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
   .lg-hide   { display:none }
 }
 
-/* ══ PREMIUM ANIMATIONS ══ */
+/* ══ ANIMATIONS ══ */
 
 /* Scroll progress bar */
-#scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7DC95E,#CEE7E6,#7DC95E);z-index:9999;width:0%;pointer-events:none}
+#scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7dc95e,#2c6e32);z-index:9999;width:0%;pointer-events:none}
 
 /* Floating particles */
 #hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 @keyframes float-up{
   0%{opacity:0;transform:translateY(0) translateX(0)}
-  12%{opacity:.8}
-  88%{opacity:.35}
+  12%{opacity:.55}
+  88%{opacity:.25}
   100%{opacity:0;transform:translateY(-160px) translateX(var(--dx,20px))}
 }
-.particle{position:absolute;border-radius:50%;background:rgba(125,201,94,.55);pointer-events:none;animation:float-up var(--dur,7s) ease-in-out infinite var(--delay,0s)}
+.particle{position:absolute;border-radius:50%;background:rgba(46,125,50,.35);pointer-events:none;animation:float-up var(--dur,7s) ease-in-out infinite var(--delay,0s)}
 
-/* Logo glow pulse */
+/* Logo card lift — subtle on light */
 @keyframes glow-pulse{
-  0%,100%{filter:drop-shadow(0 0 60px rgba(125,201,94,.45)) drop-shadow(0 24px 48px rgba(0,0,0,.8))}
-  50%{filter:drop-shadow(0 0 110px rgba(125,201,94,.85)) drop-shadow(0 0 45px rgba(206,231,230,.55)) drop-shadow(0 24px 48px rgba(0,0,0,.8))}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
 }
-#hero-logo{animation:glow-pulse 3s ease-in-out infinite}
-
-/* Shimmer sweep */
-@keyframes shimmer-sweep{0%{background-position:-300% 0}100%{background-position:300% 0}}
-.shimmer-card::after{content:'';position:absolute;inset:0;border-radius:10px;background:linear-gradient(105deg,transparent 30%,rgba(206,231,230,.18) 50%,transparent 70%);background-size:300%;animation:shimmer-sweep 3.5s linear infinite;pointer-events:none}
+#hero-logo{animation:glow-pulse 5s ease-in-out infinite}
 
 /* Ripple */
 @keyframes ripple-out{to{transform:scale(4);opacity:0}}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.22);transform:scale(0);animation:ripple-out .65s linear forwards;pointer-events:none}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:ripple-out .65s linear forwards;pointer-events:none}
 
 /* Step number glow */
-@keyframes step-glow{0%,100%{box-shadow:0 0 24px rgba(125,201,94,.35)}50%{box-shadow:0 0 50px rgba(125,201,94,.75),0 0 20px rgba(206,231,230,.45)}}
-.step-num{animation:step-glow 2.5s ease-in-out infinite}
+@keyframes step-glow{0%,100%{box-shadow:0 8px 20px rgba(46,125,50,.22)}50%{box-shadow:0 12px 30px rgba(46,125,50,.36)}}
+.step-num{animation:step-glow 3s ease-in-out infinite}
 
-.mfa-logo{ mix-blend-mode:screen }
+.mfa-logo{ mix-blend-mode:multiply }
 
 /* Stagger delays for grid children */
 .stagger>.fi:nth-child(1){transition-delay:.0s}
@@ -139,11 +160,16 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 /* Gallery grid */
 #gallery-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
-.gal-item{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:#0f1610}
+.gal-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--bg-alt);box-shadow:var(--sh-1)}
 .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease,filter .45s ease}
-.gal-item:hover img{transform:scale(1.07);filter:brightness(1.1)}
-.gal-label{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;background:linear-gradient(to top,rgba(0,0,0,.88),transparent);font-family:'Oswald',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:#fff;transform:translateY(4px);transition:transform .3s ease}
+.gal-item:hover img{transform:scale(1.07);filter:brightness(1.05)}
+.gal-label{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;background:linear-gradient(to top,rgba(0,0,0,.82),transparent);font-family:'Oswald',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:#fff;transform:translateY(4px);transition:transform .3s ease}
 .gal-item:hover .gal-label{transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .fi.will-animate{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -152,14 +178,14 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 
 <!-- ══ NAV ══ -->
-<header id="nav" style="position:sticky;top:0;z-index:50;background:rgba(9,14,9,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,201,94,.1);transition:border-color .3s,background .3s">
+<header id="nav" style="position:sticky;top:0;z-index:50;background:rgba(250,246,237,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:border-color .3s,background .3s,box-shadow .3s">
   <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:70px">
 
     <a href="#" style="display:flex;align-items:center;gap:.75rem;text-decoration:none;flex-shrink:0">
       <img src="./LOGO.png" alt="MFA Logo" class="mfa-logo" style="height:52px;width:auto"/>
       <div style="flex-direction:column">
-        <span style="font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:1rem;letter-spacing:-.02em;line-height:1;display:block">MFA EDMONTON</span>
-        <span style="font-size:.58rem;color:#8A9D8A;letter-spacing:.2em;text-transform:uppercase">Mobile Car Detailing</span>
+        <span style="font-family:'Montserrat',sans-serif;font-weight:900;color:var(--ink);font-size:1rem;letter-spacing:-.02em;line-height:1;display:block">MFA EDMONTON</span>
+        <span style="font-size:.58rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase">Mobile Car Detailing</span>
       </div>
     </a>
 
@@ -172,7 +198,7 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
     </nav>
 
     <div style="display:flex;align-items:center;gap:.9rem">
-      <a href="tel:+18259677766" class="phone-show" style="align-items:center;gap:.4rem;color:#C8D4C8;text-decoration:none;font-size:.875rem;font-weight:500;transition:color .18s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#C8D4C8'">
+      <a href="tel:+18259677766" class="phone-show" style="align-items:center;gap:.4rem;color:var(--body);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .18s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--body)'">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
         (825) 967-7766
       </a>
@@ -186,28 +212,27 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
   <div id="mob-menu">
     <div style="max-width:1280px;margin:0 auto;padding:1rem 1.5rem;display:flex;flex-direction:column">
-      <a href="#services" onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">Services</a>
-      <a href="#pricing"  onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">Pricing</a>
-      <a href="#gallery"  onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">Gallery</a>
-      <a href="#reviews"  onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">Reviews</a>
-      <a href="#areas"    onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">Areas Served</a>
-      <a href="#faq"      onclick="closeMenu()" style="color:#C8D4C8;text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)">FAQ</a>
-      <a href="tel:+18259677766" style="color:#CEE7E6;text-decoration:none;padding:.7rem 0;font-weight:600">(825) 967-7766</a>
+      <a href="#services" onclick="closeMenu()" style="color:var(--body);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border)">Services</a>
+      <a href="#pricing"  onclick="closeMenu()" style="color:var(--body);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border)">Pricing</a>
+      <a href="#gallery"  onclick="closeMenu()" style="color:var(--body);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border)">Gallery</a>
+      <a href="#areas"    onclick="closeMenu()" style="color:var(--body);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border)">Areas Served</a>
+      <a href="#faq"      onclick="closeMenu()" style="color:var(--body);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border)">FAQ</a>
+      <a href="tel:+18259677766" style="color:var(--brand-deep);text-decoration:none;padding:.7rem 0;font-weight:600">(825) 967-7766</a>
     </div>
   </div>
 </header>
 
 
 <!-- ══ HERO ══ -->
-<section id="hero-section" style="position:relative;background:radial-gradient(ellipse 100% 60% at 50% 0%,rgba(125,201,94,.18) 0%,transparent 70%),#090e09;padding:5rem 1.5rem 4rem;overflow:hidden">
+<section id="hero-section" style="position:relative;background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(125,201,94,.14) 0%,transparent 70%),var(--bg);padding:5rem 1.5rem 4rem;overflow:hidden">
   <div id="hero-particles" aria-hidden="true"></div>
   <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2" class="rg-hero">
 
     <div>
-      <h1 class="f-head fi" style="font-size:clamp(2.8rem,7vw,5.5rem);margin-bottom:1.25rem">
-        MFA Edmonton Mobile Car Detailing<br/><span style="color:#7DC95E">— We Come To You</span>
+      <h1 class="f-head fi" style="font-size:clamp(2.15rem,3.8vw,3.35rem);margin-bottom:1.25rem">
+        MFA Edmonton Mobile Car Detailing<span style="color:var(--brand-deep);display:block;margin-top:.2rem">— We Come To You</span>
       </h1>
-      <p class="fi" style="color:#C8D4C8;font-size:1.1rem;max-width:520px;line-height:1.78;margin-bottom:2rem">
+      <p class="fi" style="color:var(--body);font-size:1.1rem;max-width:520px;line-height:1.78;margin-bottom:2rem">
         Professional mobile detailing delivered to your home or office. Showroom results, zero hassle.
       </p>
       <div class="fi" style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
@@ -220,42 +245,44 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
       <!-- Stats with counter animation -->
       <div class="fi stat-nums" style="display:flex;flex-wrap:wrap;gap:2rem">
         <div>
-          <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#fff;letter-spacing:-.02em"><span class="stat-num" data-count="5" data-suffix=" ★">5 ★</span></div>
-          <div style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8A9D8A">Google Rating</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:var(--ink);letter-spacing:-.02em"><span class="stat-num" data-count="5" data-suffix=" ★">5 ★</span></div>
+          <div style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Google Rating</div>
         </div>
-        <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+        <div style="width:1px;background:var(--border-strong)"></div>
         <div>
-          <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#fff;letter-spacing:-.02em"><span class="stat-num" data-count="100" data-suffix="%">100%</span></div>
-          <div style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8A9D8A">Satisfaction</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:var(--ink);letter-spacing:-.02em"><span class="stat-num" data-count="100" data-suffix="%">100%</span></div>
+          <div style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Satisfaction</div>
         </div>
       </div>
     </div>
 
     <div class="fi" style="display:flex;justify-content:center">
-      <img id="hero-logo" src="./LOGO.png" alt="MFA Professional Car Detailing"
-           class="mfa-logo" style="width:min(480px,92vw);height:auto"/>
+      <div id="hero-logo" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:2.5rem;box-shadow:var(--sh-3);max-width:min(480px,92vw)">
+        <img src="./LOGO.png" alt="MFA Professional Car Detailing"
+             class="mfa-logo" style="width:100%;height:auto;display:block"/>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══ TRUST BADGES ══ -->
-<section style="background:#0f1610;border-top:1px solid rgba(200,212,220,.06);border-bottom:1px solid rgba(200,212,220,.06);padding:1.25rem 1.5rem">
+<section style="background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem 3rem">
-    <div class="badge fi"><svg width="18" height="18" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>Same-Week Appointments</div>
-    <div class="badge fi"><svg width="18" height="18" fill="#7DC95E" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>5-Star Google Rating</div>
-    <div class="badge fi"><svg width="18" height="18" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Satisfaction Guaranteed</div>
-    <div class="badge fi"><svg width="18" height="18" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>We Come To You</div>
+    <div class="badge fi"><svg width="18" height="18" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>Same-Week Appointments</div>
+    <div class="badge fi"><svg width="18" height="18" fill="#3e8e3a" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>5-Star Google Rating</div>
+    <div class="badge fi"><svg width="18" height="18" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Satisfaction Guaranteed</div>
+    <div class="badge fi"><svg width="18" height="18" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>We Come To You</div>
   </div>
 </section>
 
 
 <!-- ══ SERVICES + PRICING ══ -->
-<section id="services" style="padding:5.5rem 1.5rem;background:#090e09">
+<section id="services" style="padding:5.5rem 1.5rem;background:var(--bg)">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fi" style="text-align:center;margin-bottom:2.5rem">
       <div class="tag">Services &amp; Pricing</div>
       <h2 class="f-head" id="pricing" style="font-size:clamp(2.2rem,5vw,3.5rem)">CHOOSE YOUR DETAIL</h2>
-      <p style="color:#8A9D8A;max-width:520px;margin:1rem auto 0">All packages include our signature 26-point quality inspection. Prices vary by vehicle size.</p>
+      <p style="color:var(--muted);max-width:520px;margin:1rem auto 0">All packages include our signature 26-point quality inspection. Prices vary by vehicle size.</p>
     </div>
 
     <div class="fi" style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem" id="tab-btns">
@@ -268,57 +295,57 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
     <div class="tab-panel active rg-3 stagger" id="tab-combo">
       <div class="card fi" style="padding:2rem">
         <div class="tag">Starter</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:#fff;margin-bottom:.4rem">The Essential</h3>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);margin-bottom:.4rem">The Essential</h3>
         <div style="display:flex;align-items:flex-end;gap:.4rem;margin:.75rem 0 1.25rem">
           <span class="price-num" style="font-size:2.8rem">$119</span>
-          <span style="color:#8A9D8A;margin-bottom:.4rem;font-size:.875rem">starting from</span>
+          <span style="color:var(--muted);margin-bottom:.4rem;font-size:.875rem">starting from</span>
         </div>
         <div class="hr" style="margin-bottom:1.25rem"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.75rem">
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Exterior hand wash &amp; dry</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Interior vacuum</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel &amp; tire cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Window cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tire shine &amp; trim dressing</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Exterior hand wash &amp; dry</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Interior vacuum</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel &amp; tire cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Window cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tire shine &amp; trim dressing</li>
         </ul>
         <a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810786/new" target="_blank" rel="noopener" class="btn-ghost" style="display:block;text-align:center">Book This Package</a>
       </div>
 
-      <!-- Signature — featured with shimmer -->
-      <div class="card-featured shimmer-card fi" style="padding:2rem">
-        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#7DC95E,#CEE7E6);color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem 1.1rem;border-radius:0 0 4px 4px;white-space:nowrap;z-index:2">Most Popular</div>
-        <div class="tag" style="margin-top:1rem;position:relative;z-index:2">Best Value</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:#fff;margin-bottom:.4rem;position:relative;z-index:2">The Signature</h3>
+      <!-- Signature — featured -->
+      <div class="card-featured fi" style="padding:2rem">
+        <div style="position:absolute;top:4px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#7dc95e,#2c6e32);color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.28rem 1.1rem;border-radius:0 0 6px 6px;white-space:nowrap;z-index:2">Most Popular</div>
+        <div class="tag" style="margin-top:1.75rem;position:relative;z-index:2">Best Value</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);margin-bottom:.4rem;position:relative;z-index:2">The Signature</h3>
         <div style="display:flex;align-items:flex-end;gap:.4rem;margin:.75rem 0 1.25rem;position:relative;z-index:2">
-          <span class="price-num" style="font-size:2.8rem;color:#CEE7E6">$199</span>
-          <span style="color:#8A9D8A;margin-bottom:.4rem;font-size:.875rem">starting from</span>
+          <span class="price-num" style="font-size:2.8rem;color:var(--brand-deep)">$199</span>
+          <span style="color:var(--muted);margin-bottom:.4rem;font-size:.875rem">starting from</span>
         </div>
         <div class="hr" style="margin-bottom:1.25rem;position:relative;z-index:2"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.75rem;position:relative;z-index:2">
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Essential</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Carpet &amp; seat shampoo</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Steam cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Clay bar treatment</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dashboard &amp; trim detail</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Essential</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Carpet &amp; seat shampoo</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Steam cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Clay bar treatment</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dashboard &amp; trim detail</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
         </ul>
         <div style="position:relative;z-index:2"><a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810786/new" target="_blank" rel="noopener" class="btn-blue" style="display:block;text-align:center">Book This Package</a></div>
       </div>
 
       <div class="card fi" style="padding:2rem">
         <div class="tag">Ultimate</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:#fff;margin-bottom:.4rem">The Masterpiece</h3>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);margin-bottom:.4rem">The Masterpiece</h3>
         <div style="display:flex;align-items:flex-end;gap:.4rem;margin:.75rem 0 1.25rem">
           <span class="price-num" style="font-size:2.8rem">$349</span>
-          <span style="color:#8A9D8A;margin-bottom:.4rem;font-size:.875rem">starting from</span>
+          <span style="color:var(--muted);margin-bottom:.4rem;font-size:.875rem">starting from</span>
         </div>
         <div class="hr" style="margin-bottom:1.25rem"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.75rem">
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Signature</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full stain extraction</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Leather conditioning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Engine bay cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Priority scheduling</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Signature</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full stain extraction</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Leather conditioning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Engine bay cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Priority scheduling</li>
         </ul>
         <a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810786/new" target="_blank" rel="noopener" class="btn-ghost" style="display:block;text-align:center">Book This Package</a>
       </div>
@@ -327,39 +354,39 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
     <!-- INTERIOR -->
     <div class="tab-panel rg-3 stagger" id="tab-interior">
       <div class="card fi" style="padding:2rem">
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:.75rem">Basic Interior</h3>
-        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$89</span><span style="color:#8A9D8A;margin-bottom:.35rem;font-size:.875rem">from</span></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem">Basic Interior</h3>
+        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$89</span><span style="color:var(--muted);margin-bottom:.35rem;font-size:.875rem">from</span></div>
         <div class="hr" style="margin-bottom:1.25rem"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem">
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full vacuum</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dashboard wipe-down</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Interior window clean</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Door panels &amp; cup holders</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full vacuum</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dashboard wipe-down</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Interior window clean</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Door panels &amp; cup holders</li>
         </ul>
         <a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810769/new" target="_blank" rel="noopener" class="btn-ghost" style="display:block;text-align:center">Book Now</a>
       </div>
-      <div class="card-featured shimmer-card fi" style="padding:2rem">
-        <div class="tag" style="position:relative;z-index:2">Popular</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:.75rem;position:relative;z-index:2">Full Interior</h3>
-        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem;position:relative;z-index:2"><span class="price-num" style="font-size:2.5rem;color:#CEE7E6">$169</span><span style="color:#8A9D8A;margin-bottom:.35rem;font-size:.875rem">from</span></div>
+      <div class="card-featured fi" style="padding:2rem">
+        <div class="tag" style="position:relative;z-index:2;margin-top:.6rem">Popular</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem;position:relative;z-index:2">Full Interior</h3>
+        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem;position:relative;z-index:2"><span class="price-num" style="font-size:2.5rem;color:var(--brand-deep)">$169</span><span style="color:var(--muted);margin-bottom:.35rem;font-size:.875rem">from</span></div>
         <div class="hr" style="margin-bottom:1.25rem;position:relative;z-index:2"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem;position:relative;z-index:2">
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Basic</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Carpet &amp; seat shampoo</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Steam cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Basic</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Carpet &amp; seat shampoo</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Steam cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
         </ul>
         <div style="position:relative;z-index:2"><a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810769/new" target="_blank" rel="noopener" class="btn-blue" style="display:block;text-align:center">Book Now</a></div>
       </div>
       <div class="card fi" style="padding:2rem">
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:.75rem">Interior Restoration</h3>
-        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$279</span><span style="color:#8A9D8A;margin-bottom:.35rem;font-size:.875rem">from</span></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem">Interior Restoration</h3>
+        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$279</span><span style="color:var(--muted);margin-bottom:.35rem;font-size:.875rem">from</span></div>
         <div class="hr" style="margin-bottom:1.25rem"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem">
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Full Interior</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Leather conditioning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Headliner cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Heavy stain treatment</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Full Interior</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Leather conditioning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Headliner cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Heavy stain treatment</li>
         </ul>
         <a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810769/new" target="_blank" rel="noopener" class="btn-ghost" style="display:block;text-align:center">Book Now</a>
       </div>
@@ -368,60 +395,60 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
     <!-- EXTERIOR -->
     <div class="tab-panel rg-2 stagger" id="tab-exterior">
       <div class="card fi" style="padding:2rem">
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:.75rem">Exterior Refresh</h3>
-        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$79</span><span style="color:#8A9D8A;margin-bottom:.35rem;font-size:.875rem">from</span></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem">Exterior Refresh</h3>
+        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem"><span class="price-num" style="font-size:2.5rem">$79</span><span style="color:var(--muted);margin-bottom:.35rem;font-size:.875rem">from</span></div>
         <div class="hr" style="margin-bottom:1.25rem"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem">
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Hand wash &amp; dry</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel &amp; tire cleaning</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Exterior windows</li>
-          <li class="chk"><svg width="14" height="14" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tire shine dressing</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Hand wash &amp; dry</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel &amp; tire cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Exterior windows</li>
+          <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tire shine dressing</li>
         </ul>
         <a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810752/new" target="_blank" rel="noopener" class="btn-ghost" style="display:block;text-align:center">Book Now</a>
       </div>
-      <div class="card-featured shimmer-card fi" style="padding:2rem">
-        <div class="tag" style="position:relative;z-index:2">Most Complete</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:.75rem;position:relative;z-index:2">Exterior Restoration</h3>
-        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem;position:relative;z-index:2"><span class="price-num" style="font-size:2.5rem;color:#CEE7E6">$149</span><span style="color:#8A9D8A;margin-bottom:.35rem;font-size:.875rem">from</span></div>
+      <div class="card-featured fi" style="padding:2rem">
+        <div class="tag" style="position:relative;z-index:2;margin-top:.6rem">Most Complete</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem;position:relative;z-index:2">Exterior Restoration</h3>
+        <div style="display:flex;align-items:flex-end;gap:.4rem;margin-bottom:1.25rem;position:relative;z-index:2"><span class="price-num" style="font-size:2.5rem;color:var(--brand-deep)">$149</span><span style="color:var(--muted);margin-bottom:.35rem;font-size:.875rem">from</span></div>
         <div class="hr" style="margin-bottom:1.25rem;position:relative;z-index:2"></div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem;position:relative;z-index:2">
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Refresh</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Clay bar decontamination</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Paint sealant / wax</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Trim restoration</li>
-          <li class="chk"><svg width="14" height="14" fill="#CEE7E6" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel well cleaning</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Refresh</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Clay bar decontamination</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Paint sealant / wax</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Trim restoration</li>
+          <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Wheel well cleaning</li>
         </ul>
         <div style="position:relative;z-index:2"><a href="https://clienthub.getjobber.com/hubs/4d69400f-78f1-412b-bb9c-be5ee46c8381/public/requests/4810752/new" target="_blank" rel="noopener" class="btn-blue" style="display:block;text-align:center">Book Now</a></div>
       </div>
     </div>
 
-    <p class="fi" style="text-align:center;color:#8A9D8A;font-size:.8rem;margin-top:1.5rem;opacity:.7">Prices vary by vehicle size (sedan, SUV, truck, van, RV). Contact us for your exact quote.</p>
+    <p class="fi" style="text-align:center;color:var(--muted);font-size:.8rem;margin-top:1.5rem">Prices vary by vehicle size (sedan, SUV, truck, van, RV). Contact us for your exact quote.</p>
   </div>
 </section>
 
 
 <!-- ══ WHY CHOOSE MFA ══ -->
-<section style="padding:5.5rem 1.5rem;background:#0f1610">
+<section style="padding:5.5rem 1.5rem;background:var(--bg-alt)">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fi" style="text-align:center;margin-bottom:3.5rem">
       <div class="tag">Why MFA</div>
       <h2 class="f-head" style="font-size:clamp(2.2rem,5vw,3.5rem)">WHY CHOOSE MFA EDMONTON</h2>
     </div>
     <div class="rg-3 stagger">
-      <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:.6rem">We Come To You</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">Home, office, or anywhere in Edmonton. No drop-off, no waiting rooms — just results at your door.</p>
+      <div class="card fi" style="text-align:center;padding:2.25rem 1.75rem">
+        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.1rem;margin-bottom:.6rem">We Come To You</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">Home, office, or anywhere in Edmonton. No drop-off, no waiting rooms — just results at your door.</p>
       </div>
-      <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:.6rem">Pro-Grade Products</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">We use professional-grade detailing products — the same ones used by high-end auto shops.</p>
+      <div class="card fi" style="text-align:center;padding:2.25rem 1.75rem">
+        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.1rem;margin-bottom:.6rem">Pro-Grade Products</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">We use professional-grade detailing products — the same ones used by high-end auto shops.</p>
       </div>
-      <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#7DC95E" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:.6rem">100% Satisfaction</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">Not happy with the result? We'll come back and make it right — no questions asked.</p>
+      <div class="card fi" style="text-align:center;padding:2.25rem 1.75rem">
+        <div class="ic" style="margin:0 auto 1.25rem"><svg width="22" height="22" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.1rem;margin-bottom:.6rem">100% Satisfaction</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">Not happy with the result? We'll come back and make it right — no questions asked.</p>
       </div>
     </div>
   </div>
@@ -429,28 +456,28 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 
 <!-- ══ HOW IT WORKS ══ -->
-<section style="padding:5.5rem 1.5rem;background:#090e09">
+<section style="padding:5.5rem 1.5rem;background:var(--bg)">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fi" style="text-align:center;margin-bottom:3.5rem">
       <div class="tag">Simple Process</div>
       <h2 class="f-head" style="font-size:clamp(2.2rem,5vw,3.5rem)">HOW IT WORKS</h2>
-      <p style="color:#8A9D8A;max-width:480px;margin:1rem auto 0">Three easy steps to a showroom-quality vehicle.</p>
+      <p style="color:var(--muted);max-width:480px;margin:1rem auto 0">Three easy steps to a showroom-quality vehicle.</p>
     </div>
     <div class="rg-3 stagger">
       <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7DC95E,#3d6640);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff">1</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.2rem;margin-bottom:.6rem">Book Online or Call</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">Choose your service, pick a date &amp; time that works for you. Instant confirmation, no deposits required.</p>
+        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#5fb44c,#2c6e32);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff">1</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.2rem;margin-bottom:.6rem">Book Online or Call</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">Choose your service, pick a date &amp; time that works for you. Instant confirmation, no deposits required.</p>
       </div>
       <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7DC95E,#3d6640);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;animation-delay:.4s">2</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.2rem;margin-bottom:.6rem">We Show Up Ready</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">Our team arrives at your location fully equipped — you don't have to do a thing.</p>
+        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#5fb44c,#2c6e32);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;animation-delay:.4s">2</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.2rem;margin-bottom:.6rem">We Show Up Ready</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">Our team arrives at your location fully equipped — you don't have to do a thing.</p>
       </div>
       <div class="fi" style="text-align:center;padding:2rem 1.5rem">
-        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7DC95E,#3d6640);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;animation-delay:.8s">3</div>
-        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.2rem;margin-bottom:.6rem">Enjoy the Results</h3>
-        <p style="font-size:.83rem;color:#8A9D8A;line-height:1.7">Drive away in a spotless, showroom-quality vehicle. We don't leave until you're 100% satisfied.</p>
+        <div class="step-num" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#5fb44c,#2c6e32);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;animation-delay:.8s">3</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1.2rem;margin-bottom:.6rem">Enjoy the Results</h3>
+        <p style="font-size:.83rem;color:var(--muted);line-height:1.7">Drive away in a spotless, showroom-quality vehicle. We don't leave until you're 100% satisfied.</p>
       </div>
     </div>
   </div>
@@ -458,27 +485,27 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 
 <!-- ══ GALLERY ══ -->
-<section id="gallery" style="padding:5.5rem 1.5rem;background:#0f1610">
+<section id="gallery" style="padding:5.5rem 1.5rem;background:var(--bg-alt)">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fi" style="text-align:center;margin-bottom:3rem">
       <div class="tag">Our Work</div>
       <h2 class="f-head" style="font-size:clamp(2.2rem,5vw,3.5rem)">GALLERY</h2>
-      <p style="color:#8A9D8A;max-width:460px;margin:1rem auto 0">Real vehicles. Real transformations. See what MFA can do for yours.</p>
+      <p style="color:var(--muted);max-width:460px;margin:1rem auto 0">Real vehicles. Real transformations. See what MFA can do for yours.</p>
     </div>
     <div id="gallery-grid" class="fi"></div>
     <div class="fi" style="text-align:center;margin-top:2rem">
-      <a href="admin.html" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#CEE7E6;text-decoration:none;border:1px solid rgba(125,201,94,.3);padding:.45rem 1.2rem;border-radius:3px;transition:border-color .18s,color .18s" onmouseover="this.style.borderColor='rgba(125,201,94,.7)';this.style.color='#7AB8FF'" onmouseout="this.style.borderColor='rgba(125,201,94,.3)';this.style.color='#CEE7E6'">Manage Gallery →</a>
+      <a href="admin.html" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-deep);text-decoration:none;border:1px solid rgba(62,142,58,.3);padding:.5rem 1.2rem;border-radius:6px;transition:border-color .18s,background .18s" onmouseover="this.style.borderColor='rgba(62,142,58,.7)';this.style.background='rgba(62,142,58,.06)'" onmouseout="this.style.borderColor='rgba(62,142,58,.3)';this.style.background='transparent'">Manage Gallery →</a>
     </div>
   </div>
 </section>
 
 
 <!-- ══ SERVICE AREAS ══ -->
-<section id="areas" style="padding:4rem 1.5rem;background:#090e09">
+<section id="areas" style="padding:4rem 1.5rem;background:var(--bg)">
   <div style="max-width:1280px;margin:0 auto;text-align:center" class="fi">
     <div class="tag">Where We Serve</div>
     <h2 class="f-head" style="font-size:clamp(2rem,4.5vw,3rem);margin-bottom:.75rem">SERVING EDMONTON &amp; AREA</h2>
-    <p style="color:#8A9D8A;max-width:500px;margin:0 auto 2rem">We cover all of Edmonton and surrounding communities. Not sure if we reach you? Give us a call!</p>
+    <p style="color:var(--muted);max-width:500px;margin:0 auto 2rem">We cover all of Edmonton and surrounding communities. Not sure if we reach you? Give us a call!</p>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem">
       <span class="pill">Edmonton</span><span class="pill">Sherwood Park</span><span class="pill">St. Albert</span>
     </div>
@@ -487,7 +514,7 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 
 <!-- ══ FAQ ══ -->
-<section id="faq" style="padding:5.5rem 1.5rem;background:#0f1610">
+<section id="faq" style="padding:5.5rem 1.5rem;background:var(--bg-alt)">
   <div style="max-width:780px;margin:0 auto">
     <div class="fi" style="text-align:center;margin-bottom:3rem">
       <div class="tag">FAQ</div>
@@ -497,42 +524,42 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
       <div class="card" style="padding:0;overflow:hidden">
         <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:1.25rem 1.5rem;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;font-size:.95rem">How long does a detail take?</span>
-          <span style="color:#CEE7E6;font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--ink);font-size:.95rem">How long does a detail take?</span>
+          <span style="color:var(--brand-deep);font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
         </button>
-        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:#8A9D8A;line-height:1.7">Depending on the package and vehicle size, details typically take 1.5–6.5 hours. We'll give you a time estimate when you book.</div>
+        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:var(--body);line-height:1.7">Depending on the package and vehicle size, details typically take 1.5–6.5 hours. We'll give you a time estimate when you book.</div>
       </div>
 
       <div class="card" style="padding:0;overflow:hidden">
         <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:1.25rem 1.5rem;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;font-size:.95rem">Do you need access to water or power?</span>
-          <span style="color:#CEE7E6;font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--ink);font-size:.95rem">Do you need access to water or power?</span>
+          <span style="color:var(--brand-deep);font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
         </button>
-        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:#8A9D8A;line-height:1.7">Yes, we do need access to a water source and a power outlet at your location. Please make sure these are available when we arrive.</div>
+        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:var(--body);line-height:1.7">Yes, we do need access to a water source and a power outlet at your location. Please make sure these are available when we arrive.</div>
       </div>
 
       <div class="card" style="padding:0;overflow:hidden">
         <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:1.25rem 1.5rem;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;font-size:.95rem">Do you detail in the winter?</span>
-          <span style="color:#CEE7E6;font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--ink);font-size:.95rem">Do you detail in the winter?</span>
+          <span style="color:var(--brand-deep);font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
         </button>
-        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:#8A9D8A;line-height:1.7">We detail in temperatures as low as 0°C. If it's colder than that, we'll need to reschedule to ensure the best results for your vehicle.</div>
+        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:var(--body);line-height:1.7">We detail in temperatures as low as 0°C. If it's colder than that, we'll need to reschedule to ensure the best results for your vehicle.</div>
       </div>
 
       <div class="card" style="padding:0;overflow:hidden">
         <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:1.25rem 1.5rem;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;font-size:.95rem">Can I book for multiple vehicles?</span>
-          <span style="color:#CEE7E6;font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--ink);font-size:.95rem">Can I book for multiple vehicles?</span>
+          <span style="color:var(--brand-deep);font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
         </button>
-        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:#8A9D8A;line-height:1.7">Absolutely. We offer fleet and multi-vehicle discounts. Contact us directly for a custom quote if you have more than one vehicle.</div>
+        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:var(--body);line-height:1.7">Absolutely. We offer fleet and multi-vehicle discounts. Contact us directly for a custom quote if you have more than one vehicle.</div>
       </div>
 
       <div class="card" style="padding:0;overflow:hidden">
         <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:1.25rem 1.5rem;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;font-size:.95rem">How do I pay?</span>
-          <span style="color:#CEE7E6;font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
+          <span style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--ink);font-size:.95rem">How do I pay?</span>
+          <span style="color:var(--brand-deep);font-size:1.3rem;flex-shrink:0;transition:transform .25s">+</span>
         </button>
-        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:#8A9D8A;line-height:1.7">We accept cash, e-transfer, and PayPal. Payment is due upon completion of the service.</div>
+        <div style="display:none;padding:0 1.5rem 1.25rem;font-size:.875rem;color:var(--body);line-height:1.7">We accept cash, e-transfer, and PayPal. Payment is due upon completion of the service.</div>
       </div>
 
     </div>
@@ -541,7 +568,7 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
 
 
 <!-- ══ FOOTER ══ -->
-<footer style="background:#070d07;border-top:1px solid rgba(200,212,220,.06)">
+<footer style="background:#ece4d2;border-top:1px solid var(--border)">
   <div style="max-width:1280px;margin:0 auto;padding:3.5rem 1.5rem 2rem">
     <div class="rg-footer" style="margin-bottom:2.5rem">
 
@@ -549,44 +576,44 @@ body{font-family:'Inter',sans-serif;background:#090e09;color:#C8D4C8;line-height
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
           <img src="./LOGO.png" alt="MFA" class="mfa-logo" style="height:50px;width:auto"/>
           <div>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:1rem;letter-spacing:-.02em;line-height:1">MFA EDMONTON</div>
-            <div style="font-size:.58rem;color:#8A9D8A;letter-spacing:.2em;text-transform:uppercase">Mobile Car Detailing</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:900;color:var(--ink);font-size:1rem;letter-spacing:-.02em;line-height:1">MFA EDMONTON</div>
+            <div style="font-size:.58rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase">Mobile Car Detailing</div>
           </div>
         </div>
-        <p style="color:#8A9D8A;font-size:.83rem;max-width:280px;line-height:1.75;margin-bottom:1.25rem">Edmonton's trusted mobile detailing professionals. Showroom quality delivered to your door.</p>
+        <p style="color:var(--muted);font-size:.83rem;max-width:280px;line-height:1.75;margin-bottom:1.25rem">Edmonton's trusted mobile detailing professionals. Showroom quality delivered to your door.</p>
         <div style="display:flex;gap:.6rem">
-          <a href="#" aria-label="Facebook" class="ic" style="text-decoration:none;width:38px;height:38px" onmouseover="this.style.borderColor='rgba(125,201,94,.5)'" onmouseout="this.style.borderColor='rgba(125,201,94,.22)'"><svg width="14" height="14" fill="#8A9D8A" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-          <a href="https://www.instagram.com/mfa_mobiledetailing/" target="_blank" rel="noopener" aria-label="Instagram" class="ic" style="text-decoration:none;width:38px;height:38px" onmouseover="this.style.borderColor='rgba(125,201,94,.5)'" onmouseout="this.style.borderColor='rgba(125,201,94,.22)'"><svg width="14" height="14" fill="none" stroke="#8A9D8A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="https://www.tiktok.com/@mfa_mobile_car_detailing?lang=en" target="_blank" rel="noopener" aria-label="TikTok" class="ic" style="text-decoration:none;width:38px;height:38px" onmouseover="this.style.borderColor='rgba(125,201,94,.5)'" onmouseout="this.style.borderColor='rgba(125,201,94,.22)'"><svg width="14" height="14" fill="#8A9D8A" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 106.33 6.34V8.69a8.18 8.18 0 004.79 1.54V6.8a4.85 4.85 0 01-1.02-.11z"/></svg></a>
+          <a href="#" aria-label="Facebook" class="ic" style="text-decoration:none;width:38px;height:38px;background:var(--surface)" onmouseover="this.style.borderColor='rgba(62,142,58,.5)'" onmouseout="this.style.borderColor='rgba(62,142,58,.22)'"><svg width="14" height="14" fill="#7c877e" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/mfa_mobiledetailing/" target="_blank" rel="noopener" aria-label="Instagram" class="ic" style="text-decoration:none;width:38px;height:38px;background:var(--surface)" onmouseover="this.style.borderColor='rgba(62,142,58,.5)'" onmouseout="this.style.borderColor='rgba(62,142,58,.22)'"><svg width="14" height="14" fill="none" stroke="#7c877e" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.tiktok.com/@mfa_mobile_car_detailing?lang=en" target="_blank" rel="noopener" aria-label="TikTok" class="ic" style="text-decoration:none;width:38px;height:38px;background:var(--surface)" onmouseover="this.style.borderColor='rgba(62,142,58,.5)'" onmouseout="this.style.borderColor='rgba(62,142,58,.22)'"><svg width="14" height="14" fill="#7c877e" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 106.33 6.34V8.69a8.18 8.18 0 004.79 1.54V6.8a4.85 4.85 0 01-1.02-.11z"/></svg></a>
         </div>
       </div>
 
       <div>
-        <h4 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1rem;margin-bottom:1rem">Services</h4>
+        <h4 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1rem;margin-bottom:1rem">Services</h4>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.83rem">
-          <li><a href="#services" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">Combo Packages</a></li>
-          <li><a href="#services" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">Interior Detail</a></li>
-          <li><a href="#services" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">Exterior Detail</a></li>
+          <li><a href="#services" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Combo Packages</a></li>
+          <li><a href="#services" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Interior Detail</a></li>
+          <li><a href="#services" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Exterior Detail</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 style="font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1rem;margin-bottom:1rem">Contact</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.83rem;color:#8A9D8A">
-          <li><a href="tel:+18259677766" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">(825) 967-7766</a></li>
-          <li><a href="mailto:ali09assaf@gmail.com" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">ali09assaf@gmail.com</a></li>
-          <li style="margin-top:.5rem"><span style="color:#fff">Hours</span><br/>Mon–Sat 8AM–7PM<br/>Sun 10AM–5PM</li>
-          <li style="margin-top:.5rem"><span style="color:#fff">Areas</span><br/>Edmonton<br/>Sherwood Park<br/>St. Albert</li>
+        <h4 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--ink);font-size:1rem;margin-bottom:1rem">Contact</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.83rem;color:var(--muted)">
+          <li><a href="tel:+18259677766" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">(825) 967-7766</a></li>
+          <li><a href="mailto:ali09assaf@gmail.com" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">ali09assaf@gmail.com</a></li>
+          <li style="margin-top:.5rem"><span style="color:var(--ink)">Hours</span><br/>Mon–Sat 8AM–7PM<br/>Sun 10AM–5PM</li>
+          <li style="margin-top:.5rem"><span style="color:var(--ink)">Areas</span><br/>Edmonton<br/>Sherwood Park<br/>St. Albert</li>
         </ul>
       </div>
 
     </div>
     <div class="hr" style="margin-bottom:1.5rem"></div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;font-size:.75rem;color:#8A9D8A">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;font-size:.75rem;color:var(--muted)">
       <p>© 2026 MFA Edmonton Mobile Car Detailing. All rights reserved.</p>
       <div style="display:flex;gap:1.5rem">
-        <a href="#" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">Privacy Policy</a>
-        <a href="#" style="color:#8A9D8A;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8A9D8A'">Terms</a>
+        <a href="#" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
+        <a href="#" style="color:var(--muted);text-decoration:none" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Terms</a>
       </div>
     </div>
   </div>
@@ -634,8 +661,10 @@ function submitForm(e){
 }
 
 // ── Scroll fade-in ──
+const NOFX = /nofx/.test(location.search + location.hash) ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const allFi = document.querySelectorAll('.fi:not(.stagger .fi)');
-allFi.forEach(el => el.classList.add('will-animate'));
+if (!NOFX) allFi.forEach(el => el.classList.add('will-animate'));
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
@@ -643,9 +672,16 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
 allFi.forEach(el => obs.observe(el));
 
+// ── Safety net: never leave content hidden ──
+setTimeout(() => document.querySelectorAll('.fi.will-animate:not(.vis)').forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < window.innerHeight * 1.1) el.classList.add('vis');
+}), 500);
+
 // ── Stagger grids ──
 document.querySelectorAll('.stagger').forEach(grid => {
   const kids = grid.querySelectorAll('.fi');
+  if (NOFX) return;
   kids.forEach(k => k.classList.add('will-animate'));
   const so = new IntersectionObserver(([entry]) => {
     if (!entry.isIntersecting) return;
@@ -658,8 +694,9 @@ document.querySelectorAll('.stagger').forEach(grid => {
 // ── Nav shade on scroll ──
 window.addEventListener('scroll', () => {
   const n = document.getElementById('nav');
-  n.style.background = window.scrollY > 60 ? 'rgba(13,13,18,.98)' : 'rgba(13,13,18,.95)';
-  n.style.borderBottomColor = window.scrollY > 60 ? 'rgba(200,212,220,.1)' : 'rgba(200,212,220,.06)';
+  const scrolled = window.scrollY > 60;
+  n.style.background = scrolled ? 'rgba(250,246,237,.96)' : 'rgba(250,246,237,.82)';
+  n.style.boxShadow = scrolled ? '0 1px 0 rgba(22,36,27,.06), 0 8px 28px rgba(20,55,28,.07)' : 'none';
 }, { passive: true });
 
 // ── Scroll progress bar ──
@@ -672,13 +709,13 @@ window.addEventListener('scroll', () => {
 // ── Hero particles ──
 (function(){
   const c = document.getElementById('hero-particles');
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < 18; i++) {
     const p = document.createElement('span');
     const s = Math.random() * 3 + 1.5;
     const bright = Math.random() > 0.5;
     p.className = 'particle';
     p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${35+Math.random()*60}%;` +
-      `background:rgba(${bright?'125,201,94':'206,231,230'},.${Math.floor(Math.random()*3+4)});` +
+      `background:rgba(${bright?'46,125,50':'125,201,94'},.${Math.floor(Math.random()*3+3)});` +
       `--dur:${5+Math.random()*7}s;--delay:${-(Math.random()*10)}s;--dx:${(Math.random()-.5)*70}px`;
     c.appendChild(p);
   }
@@ -701,7 +738,7 @@ const cntObs = new IntersectionObserver(([e]) => {
   });
   cntObs.unobserve(e.target);
 }, { threshold: 0.5 });
-document.querySelectorAll('.stat-nums').forEach(el => cntObs.observe(el));
+if (!NOFX) document.querySelectorAll('.stat-nums').forEach(el => cntObs.observe(el));
 
 // ── 3D card tilt ──
 document.querySelectorAll('.card, .card-featured').forEach(card => {
@@ -709,7 +746,7 @@ document.querySelectorAll('.card, .card-featured').forEach(card => {
     const r = card.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(700px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-6px)`;
+    card.style.transform = `perspective(700px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-4px)`;
     card.style.transition = 'transform .08s ease';
   });
   card.addEventListener('mouseleave', () => {
@@ -734,11 +771,11 @@ document.querySelectorAll('.btn-blue, .btn-ghost').forEach(btn => {
 // ── Dynamic gallery ──
 (function(){
   const defaults = [
-    { id:'d1', src:'https://placehold.co/700x525/0f1610/7DC95E?text=Before+%26+After', caption:'Full Detail Transformation' },
-    { id:'d2', src:'https://placehold.co/700x525/111a11/CEE7E6?text=Interior+Detail',  caption:'Interior Restoration' },
-    { id:'d3', src:'https://placehold.co/700x525/0f1610/7DC95E?text=Ceramic+Coating',  caption:'Ceramic Coating' },
-    { id:'d4', src:'https://placehold.co/700x525/111a11/CEE7E6?text=Paint+Correction', caption:'Paint Correction' },
-    { id:'d6', src:'https://placehold.co/700x525/0f1610/7DC95E?text=Exterior+Wash',    caption:'Exterior Restoration' },
+    { id:'d1', src:'https://placehold.co/700x525/f2ecdb/2c6e32?text=Before+%26+After', caption:'Full Detail Transformation' },
+    { id:'d2', src:'https://placehold.co/700x525/ece4d2/2c6e32?text=Interior+Detail',  caption:'Interior Restoration' },
+    { id:'d3', src:'https://placehold.co/700x525/f2ecdb/2c6e32?text=Ceramic+Coating',  caption:'Ceramic Coating' },
+    { id:'d4', src:'https://placehold.co/700x525/ece4d2/2c6e32?text=Paint+Correction', caption:'Paint Correction' },
+    { id:'d6', src:'https://placehold.co/700x525/f2ecdb/2c6e32?text=Exterior+Wash',    caption:'Exterior Restoration' },
   ];
   const grid = document.getElementById('gallery-grid');
   let items;
@@ -748,13 +785,12 @@ document.querySelectorAll('.btn-blue, .btn-ghost').forEach(btn => {
   grid.innerHTML = items.map(item => `
     <div class="gal-item fi">
       <img src="${item.src}" alt="${item.caption||'Detail work'}" loading="lazy"
-           onerror="this.src='https://placehold.co/700x525/0f1610/7DC95E?text=Photo'"/>
+           onerror="this.src='https://placehold.co/700x525/f2ecdb/2c6e32?text=Photo'"/>
       ${item.caption ? `<div class="gal-label">${item.caption}</div>` : ''}
     </div>`).join('');
 
   grid.querySelectorAll('.fi').forEach(el => {
-    el.classList.add('will-animate');
-    obs.observe(el);
+    if (!NOFX) { el.classList.add('will-animate'); obs.observe(el); }
   });
 })();
 </script>
