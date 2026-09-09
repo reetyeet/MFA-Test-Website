@@ -125,6 +125,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
 /* Scroll progress bar */
 #scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7dc95e,#2c6e32);z-index:9999;width:0%;pointer-events:none}
 
+/* KaamCam: hide the auto floating button — its popup is triggered from the interior booking buttons */
+#kaamcam-booking-btn{display:none!important}
+
 /* Floating particles */
 #hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 @keyframes float-up{
@@ -792,6 +795,15 @@ document.querySelectorAll('.btn-blue, .btn-ghost').forEach(btn => {
     if (!NOFX) { el.classList.add('will-animate'); obs.observe(el); }
   });
 })();
+
+// ── Interior booking buttons → KaamCam popup ──
+document.querySelectorAll('#tab-interior a[href*="getjobber"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const kc = document.getElementById('kaamcam-booking-btn');
+    if (kc) { e.preventDefault(); kc.click(); }
+  });
+});
 </script>
+<script src="https://kaamcam.com/embed/booking.js" data-token="533e3906f24716a543f71de7e877a8db" data-mode="popup"></script>
 </body>
 </html>
