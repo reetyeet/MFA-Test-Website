@@ -125,8 +125,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
 /* Scroll progress bar */
 #scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7dc95e,#2c6e32);z-index:9999;width:0%;pointer-events:none}
 
-/* KaamCam: hide the auto floating button — its popup is triggered from the interior booking buttons */
-#kaamcam-booking-btn{display:none!important}
+/* KaamCam popup — opened from the Interior & Combo booking buttons */
+@keyframes kcFadeIn{from{opacity:0}to{opacity:1}}
 
 /* Floating particles */
 #hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
@@ -311,7 +311,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Window cleaning</li>
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tire shine &amp; trim dressing</li>
         </ul>
-        <a href="tel:+18259677766" class="btn-ghost" style="display:block;text-align:center">Book This Package</a>
+        <button type="button" data-kc-book data-kc-token="f7b5b6c1c1c7b6204d57d4eb82202b9b" class="btn-ghost" style="display:block;width:100%;text-align:center">Book This Package</button>
       </div>
 
       <!-- Signature — featured -->
@@ -332,7 +332,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dashboard &amp; trim detail</li>
           <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
         </ul>
-        <div style="position:relative;z-index:2"><a href="tel:+18259677766" class="btn-blue" style="display:block;text-align:center">Book This Package</a></div>
+        <div style="position:relative;z-index:2"><button type="button" data-kc-book data-kc-token="f7b5b6c1c1c7b6204d57d4eb82202b9b" class="btn-blue" style="display:block;width:100%;text-align:center">Book This Package</button></div>
       </div>
 
       <div class="card fi" style="padding:2rem">
@@ -349,7 +349,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Leather conditioning</li>
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Engine bay cleaning</li>
         </ul>
-        <a href="tel:+18259677766" class="btn-ghost" style="display:block;text-align:center">Book This Package</a>
+        <button type="button" data-kc-book data-kc-token="f7b5b6c1c1c7b6204d57d4eb82202b9b" class="btn-ghost" style="display:block;width:100%;text-align:center">Book This Package</button>
       </div>
     </div>
 
@@ -365,7 +365,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Interior window clean</li>
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Door panels &amp; cup holders</li>
         </ul>
-        <button type="button" data-kc-book class="btn-ghost" style="display:block;width:100%;text-align:center">Book Now</button>
+        <button type="button" data-kc-book data-kc-token="533e3906f24716a543f71de7e877a8db" class="btn-ghost" style="display:block;width:100%;text-align:center">Book Now</button>
       </div>
       <div class="card-featured fi" style="padding:2rem">
         <div class="tag" style="position:relative;z-index:2;margin-top:.6rem">Popular</div>
@@ -378,7 +378,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Steam cleaning</li>
           <li class="chk"><svg width="14" height="14" fill="#2c6e32" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Odor elimination</li>
         </ul>
-        <div style="position:relative;z-index:2"><button type="button" data-kc-book class="btn-blue" style="display:block;width:100%;text-align:center">Book Now</button></div>
+        <div style="position:relative;z-index:2"><button type="button" data-kc-book data-kc-token="533e3906f24716a543f71de7e877a8db" class="btn-blue" style="display:block;width:100%;text-align:center">Book Now</button></div>
       </div>
       <div class="card fi" style="padding:2rem">
         <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.75rem">Interior Restoration</h3>
@@ -390,7 +390,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);line-
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Headliner cleaning</li>
           <li class="chk"><svg width="14" height="14" fill="#3e8e3a" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Heavy stain treatment</li>
         </ul>
-        <button type="button" data-kc-book class="btn-ghost" style="display:block;width:100%;text-align:center">Book Now</button>
+        <button type="button" data-kc-book data-kc-token="533e3906f24716a543f71de7e877a8db" class="btn-ghost" style="display:block;width:100%;text-align:center">Book Now</button>
       </div>
     </div>
 
@@ -796,15 +796,42 @@ document.querySelectorAll('.btn-blue, .btn-ghost').forEach(btn => {
   });
 })();
 
-// ── Interior booking buttons → KaamCam popup ──
-document.querySelectorAll('#tab-interior [data-kc-book]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const kc = document.getElementById('kaamcam-booking-btn');
-    if (kc) kc.click();
-    else window.location.href = 'tel:+18259677766';
-  });
+// ── KaamCam booking popup (Interior + Combo) ──
+function openKaamCam(token){
+  if(!token || document.getElementById('kaamcam-booking-overlay')) return;
+  const base = 'https://kaamcam.com';
+  const ov = document.createElement('div');
+  ov.id = 'kaamcam-booking-overlay';
+  ov.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;animation:kcFadeIn .2s ease';
+  const modal = document.createElement('div');
+  modal.style.cssText = 'background:#fff;border-radius:16px;overflow:hidden;width:90%;max-width:560px;max-height:90vh;position:relative;box-shadow:0 25px 50px rgba(0,0,0,.25)';
+  const close = document.createElement('button');
+  close.type = 'button'; close.innerHTML = '&times;'; close.setAttribute('aria-label','Close');
+  close.style.cssText = 'position:absolute;top:12px;right:16px;z-index:10;background:none;border:none;font-size:28px;cursor:pointer;color:#6b7280;line-height:1;padding:4px 8px';
+  const shut = () => { ov.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = e => { if (e.key === 'Escape') shut(); };
+  close.onclick = shut;
+  const frame = document.createElement('iframe');
+  frame.src = base + '/embed/booking/' + token;
+  frame.style.cssText = 'width:100%;height:650px;border:none';
+  frame.setAttribute('title','Book an Appointment');
+  modal.append(close, frame);
+  ov.appendChild(modal);
+  ov.addEventListener('click', e => { if (e.target === ov) shut(); });
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(ov);
+}
+window.addEventListener('message', e => {
+  if (e.data?.type === 'kaamcam-booking-submitted')
+    setTimeout(() => document.getElementById('kaamcam-booking-overlay')?.remove(), 2000);
+  if (e.data?.type === 'kaamcam-resize') {
+    const f = document.querySelector('#kaamcam-booking-overlay iframe');
+    if (f) f.style.height = e.data.height + 'px';
+  }
+});
+document.querySelectorAll('[data-kc-book]').forEach(btn => {
+  btn.addEventListener('click', () => openKaamCam(btn.dataset.kcToken));
 });
 </script>
-<script src="https://kaamcam.com/embed/booking.js" data-token="533e3906f24716a543f71de7e877a8db" data-mode="popup"></script>
 </body>
 </html>
